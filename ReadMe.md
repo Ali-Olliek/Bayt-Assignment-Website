@@ -11,3 +11,14 @@
 > - Students have id, name, age, and residence location
 > - You are welcome to use any SQL database
 > - You are welcome to use any PHP or Laravel library
+
+## Setup and Usage
+
+### Backend
+
+- change directory to `backend`.
+- run `composer install` to install all dependencies.
+- create a database named `bayt` on MySQL. 
+- run `php artisan start`, this custom command will run the migrations, seed the database, and run the development server for you.
+
+### Frontend
