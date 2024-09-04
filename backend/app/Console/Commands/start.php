@@ -28,10 +28,19 @@ class start extends Command
      */
     public function handle()
     {
+        # Migrate DB Scheme
         $this->call("migrate");
+
+        # Seed the DB
         $this->call("db:seed");
+
         $this->info("Admin email: admin@admin.com");
         $this->info("Admin password: 1234qwer");
+
+        # Create JWT Secret
+        $this->call("jwt:secret");
+
+        # Serve the application
         $this->call("serve");
     }
 }
