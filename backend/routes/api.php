@@ -2,8 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Public\AuthenticationController as PublicAuth;
 use App\Http\Controllers\Users\AuthenticationController as UserAuth;
+use App\Http\Controllers\Public\AuthenticationController as PublicAuth;
+use App\Http\Controllers\Admins\UsersController as AdminUsersController;
+use App\Http\Controllers\Users\StudentsController as UsersStudentsController;
+use App\Http\Controllers\Admins\StudentsController as AdminStudentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,11 +27,21 @@ Route::prefix("public")->group(function () {
 #endregion
 
 #region Users
-Route::prefix("users")->group(function () {
+Route::prefix("users")->middleware("isLoggedIn")->group(function () {
     Route::post("sign-out", [UserAuth::class, "signout"]);
+    Route::get("students", [UsersStudentsController::class, "index"]);
 });
 #endregion
 
 #region Admins
-Route::prefix("admins")->group(function () {});
+Route::prefix("admins")->middleware("isAdmin")->group(function () {
+    #region Users 
+    Route::get("users", [AdminUsersController::class, "index"]);
+    Route::put("users/{id}", [AdminUsersController::class, "update"]);
+    #endregion
+
+    #region Students
+    Route::apiResource("students", AdminStudentsController::class);
+    #endregion
+});
 #endregion

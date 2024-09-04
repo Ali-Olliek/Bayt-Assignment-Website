@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Interfaces\IAuthenticatable;
 use Illuminate\Support\Facades\DB;
 
-class AuthenticationService implements IAuthenticatable
+class AuthenticationService extends BaseService implements IAuthenticatable
 {
     public function signin(array $credentials, $params = null)
     {
