@@ -30,6 +30,8 @@ class start extends Command
     {
         $this->call("migrate");
         $this->call("db:seed");
+        $this->info("Admin email: admin@admin.com");
+        $this->info("Admin password: 1234qwer");
         $this->call("serve");
     }
 }
