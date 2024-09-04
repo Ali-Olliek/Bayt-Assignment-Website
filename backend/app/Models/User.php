@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -27,6 +27,7 @@ class User extends Authenticatable
 
     protected $casts = [
         'password' => 'hashed',
+        'is_admin' => 'boolean'
     ];
 
     #region Attributes
@@ -44,7 +45,11 @@ class User extends Authenticatable
 
     public function getJWTCustomClaims()
     {
-        return [];
+        return [
+            "name" => $this->attributes["username"],
+            "is_admin" => $this->attributes["is_admin"],
+            "email" => $this->attributes["email"]
+        ];
     }
     #endregion
 }

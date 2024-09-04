@@ -5,12 +5,13 @@ namespace App\Services;
 use Exception;
 use App\Models\User;
 use App\Interfaces\IAuthenticatable;
+use Illuminate\Support\Facades\DB;
 
 class AuthenticationService implements IAuthenticatable
 {
     public function signin(array $credentials, $params = null)
     {
-        if (!$token = auth()->attempt($credentials)) {
+        if (!$token = auth("api")->attempt($credentials)) {
             throw new Exception("Invalid Credentials");
         }
 
@@ -23,7 +24,10 @@ class AuthenticationService implements IAuthenticatable
 
         if (!$newUser) throw new Exception("Failed to sign up");
 
-        $token = auth()->attempt($credentials["email"], $credentials["password"]);
+        $token = auth()->attempt([
+            "email" => $credentials["email"],
+            "password" => $credentials["password"]
+        ]);
 
         return $token;
     }
