@@ -16,8 +16,8 @@ class User extends Authenticatable implements JWTSubject
 
     #region Config
     protected $fillable = [
-        'username',
         'email',
+        'username',
         'password',
         'is_admin'
     ];

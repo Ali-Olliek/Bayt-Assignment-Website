@@ -11,6 +11,7 @@ class AuthenticationService extends BaseService implements IAuthenticatable
 {
     public function signin(array $credentials, $params = null)
     {
+
         if (!$token = auth("api")->attempt($credentials)) {
             throw new Exception("Invalid Credentials");
         }
