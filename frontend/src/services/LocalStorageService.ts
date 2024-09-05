@@ -6,4 +6,9 @@ export default class LocalStorageService {
   deleteToken() {
     localStorage.removeItem('token');
   }
+
+  getToken(): string | null {
+    const token = localStorage.getItem('token');
+    return token;
+  }
 }
