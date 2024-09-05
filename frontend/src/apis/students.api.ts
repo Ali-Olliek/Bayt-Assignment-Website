@@ -7,65 +7,54 @@ interface ICreateStudent {
   address: string;
 }
 
-const index = async () => {
+const index = async (uri: string) => {
   try {
-    const { data } = await authenticatedApi.get('/admin/students');
+    const { data } = await authenticatedApi.get(uri);
 
-    const students = data.data.map((student: any) => new Student(student));
-
+    const students = data.map((student: any) => new Student(student));
     return students;
-  } catch (error) {
-    throw error;
-  }
+  } catch (error) {}
 };
 
 const show = async (id: number) => {
   try {
-    const { data } = await authenticatedApi.get(`/admin/students/${id}`);
+    const { data } = await authenticatedApi.get(`/admins/students/${id}`);
 
-    const student = new Student(data.data);
-    return data;
-  } catch (error) {
-    throw error;
-  }
+    const student = new Student(data);
+    return student;
+  } catch (error) {}
 };
 
 const create = async (studentInfo: ICreateStudent) => {
   try {
     const { data } = await authenticatedApi.post(
-      '/admin/students',
+      '/admins/students',
       studentInfo
     );
 
-    const student = new Student(data.data);
+    const student = new Student(data);
 
     return student;
-  } catch (error) {
-    throw error;
-  }
+  } catch (error) {}
 };
 
 const update = async (studentInfo: Partial<ICreateStudent>, id: number) => {
   try {
     const { data } = await authenticatedApi.put(
-      `/admin/students/${id}`,
+      `/admins/students/${id}`,
       studentInfo
     );
 
-    const student = new Student(data.data);
+    const student = new Student(data);
 
     return student;
-  } catch (error) {
-    throw error;
-  }
+  } catch (error) {}
 };
 
 const remove = async (id: number) => {
   try {
-    await authenticatedApi.delete(`/admin/students/${id}`);
-  } catch (error) {
-    throw error;
-  }
+    await authenticatedApi.delete(`/admins/students/${id}`);
+  } catch (error) {}
 };
 
 export {
