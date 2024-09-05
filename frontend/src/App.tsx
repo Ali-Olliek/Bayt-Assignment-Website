@@ -8,6 +8,7 @@ import {
   UsersScreen,
 } from './screens';
 import MainLayout from './components/layouts/main-layout/MainLayout';
+import ProtectedRoute from './navigation/ProtectedRoute';
 
 function App() {
   return (
@@ -33,8 +34,22 @@ function App() {
 
         <Route path='/' element={<Redirector />}>
           {/* Protected Routes */}
-          <Route path='/students' element={<StudentsScreen />} />
-          <Route path='/users' element={<UsersScreen />} />
+          <Route
+            path='/students'
+            element={
+              <ProtectedRoute adminsOnly={false}>
+                <StudentsScreen />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path='/users'
+            element={
+              <ProtectedRoute adminsOnly>
+                <UsersScreen />
+              </ProtectedRoute>
+            }
+          />
         </Route>
         <Route path='*' element={<>404</>} />
       </Routes>

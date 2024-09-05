@@ -3,11 +3,11 @@ import { authenticatedApi } from '../config/api';
 
 const update = async (isAdmin: boolean, id: number) => {
   try {
-    const { data } = await authenticatedApi.put(`/admin/users/${id}`, {
+    const { data } = await authenticatedApi.put(`/admins/users/${id}`, {
       is_admin: isAdmin,
     });
 
-    const user = new User(data.data);
+    const user = new User(data);
 
     return user;
   } catch (error) {
@@ -17,7 +17,7 @@ const update = async (isAdmin: boolean, id: number) => {
 
 const index = async () => {
   try {
-    const { data } = await authenticatedApi.get('/admin/users');
+    const { data } = await authenticatedApi.get('/admins/users');
 
     const users = data.data.map((user: any) => new User(user));
 

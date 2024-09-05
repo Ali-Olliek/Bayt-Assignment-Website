@@ -5,6 +5,8 @@ import StudentControls from '../components/students/StudentControls';
 import { useRole } from '../hooks/useRoles';
 import Popup from '../components/controls/Popup';
 
+const HEADERS = ['Id', 'Name', 'Age', 'Address', 'Action'];
+
 function Students() {
   const { isAdmin } = useRole();
   const [students, setStudents] = useState<Student[]>([]);
@@ -45,7 +47,7 @@ function Students() {
   };
 
   return (
-    <div>
+    <>
       <div>
         {isAdmin && (
           <>
@@ -84,17 +86,33 @@ function Students() {
             )}
           </>
         )}
-        {students?.map((student, index) => (
-          <div className='student-card' key={student.id}>
-            <p>{student.id}</p>
-            <p>{student.name}</p>
-            <p>{student.age}</p>
-            <p>{student.address}</p>
-            {isAdmin && <StudentControls student={student} />}
-          </div>
-        ))}
       </div>
-    </div>
+      <table>
+        <thead>
+          <tr>
+            {HEADERS.map((header) => {
+              if (!isAdmin && header == 'Action') return;
+              return <th key={header}>{header}</th>;
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          {students?.map((student) => (
+            <tr key={student.id}>
+              <td>{student.id}</td>
+              <td style={{ textAlign: 'left' }}>{student.name}</td>
+              <td>{student.age}</td>
+              <td style={{ textAlign: 'left' }}>{student.address}</td>
+              {isAdmin && (
+                <td>
+                  <StudentControls student={student} />
+                </td>
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 }
 
