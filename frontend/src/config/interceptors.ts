@@ -6,7 +6,7 @@ export function handleSuccess<T>(success: AxiosResponse<T>): AxiosResponse<T> {
 }
 
 export function handleError(error: AxiosError) {
-  const localStorageService = new LocalStorageService();
+  const localStorageService = LocalStorageService.getInstance();
 
   switch (error.code) {
     case '400':
@@ -14,7 +14,7 @@ export function handleError(error: AxiosError) {
       break;
 
     case '401':
-      localStorageService.deleteToken();
+      localStorageService.deleteUser();
       window.location.href = '/login';
       break;
 
@@ -27,11 +27,11 @@ export function handleError(error: AxiosError) {
 export function handleRequest(
   request: InternalAxiosRequestConfig<any>
 ): InternalAxiosRequestConfig<any> {
-  const localStorageService = new LocalStorageService();
+  const localStorageService = LocalStorageService.getInstance();
 
-  const token = localStorageService.getToken();
+  const user = localStorageService.getUser();
 
-  request.headers['Authorization'] = `Bearer ${token}`;
+  request.headers['Authorization'] = `Bearer ${user?.token}`;
 
   return request;
 }
