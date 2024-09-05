@@ -8,22 +8,21 @@ export function handleSuccess<T>(success: AxiosResponse<T>): AxiosResponse<T> {
 export function handleError(error: AxiosError) {
   const localStorageService = LocalStorageService.getInstance();
 
-  switch (error.code) {
-    case '400':
-      console.log(error);
+  switch (error.response?.status) {
+    case 400:
       break;
 
-    case '401':
+    case 401:
       localStorageService.deleteUser();
-      window.location.href = '/login';
+      window.location.href = '/sign-in';
       break;
 
     default:
+      console.log('Unhandled Error', error);
       break;
   }
 }
 
-//! Check later
 export function handleRequest(
   request: InternalAxiosRequestConfig<any>
 ): InternalAxiosRequestConfig<any> {
