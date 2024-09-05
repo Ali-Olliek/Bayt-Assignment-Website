@@ -18,6 +18,7 @@ const authenticatedApi = axios.create({
 });
 
 authenticatedApi.interceptors.request.use(handleRequest);
+authenticatedApi.interceptors.response.use(handleSuccess, handleError);
 
 unAuthenticatedApi.interceptors.response.use(handleSuccess, handleError);
 export { unAuthenticatedApi, authenticatedApi };
