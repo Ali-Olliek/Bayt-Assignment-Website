@@ -16,7 +16,11 @@ class AuthenticationService extends BaseService implements IAuthenticatable
             throw new Exception("Invalid Credentials");
         }
 
-        return $token;
+        $user = auth()->user();
+
+        $user["token"] = $token;
+
+        return $user;
     }
 
     public function signup(array $credentials, $params = null)
@@ -30,7 +34,9 @@ class AuthenticationService extends BaseService implements IAuthenticatable
             "password" => $credentials["password"]
         ]);
 
-        return $token;
+        $newUser["token"] = $token;
+
+        return $newUser;
     }
 
     public function signout()
