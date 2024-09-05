@@ -41,7 +41,7 @@ const signup = async (
 
 const signout = async (): Promise<any> => {
   try {
-    const { data } = await authenticatedApi.post('/public/sign-out');
+    const { data } = await authenticatedApi.post('/users/sign-out');
 
     return data;
   } catch (error) {}
