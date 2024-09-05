@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { handleError, handleSuccess } from './interceptors';
+import { handleRequest, handleError, handleSuccess } from './interceptors';
 
 const unAuthenticatedApi = axios.create({
   baseURL: process.env.REACT_APP_BACKEND_URL,
@@ -9,5 +9,15 @@ const unAuthenticatedApi = axios.create({
   },
 });
 
+const authenticatedApi = axios.create({
+  baseURL: process.env.REACT_APP_BACKEND_URL,
+  headers: {
+    Content: 'application/json',
+    timeout: 50000,
+  },
+});
+
+authenticatedApi.interceptors.request.use(handleRequest);
+
 unAuthenticatedApi.interceptors.response.use(handleSuccess, handleError);
-export default unAuthenticatedApi;
+export { unAuthenticatedApi, authenticatedApi };
