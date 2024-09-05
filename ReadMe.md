@@ -11,14 +11,32 @@
 > - Students have id, name, age, and residence location
 > - You are welcome to use any SQL database
 > - You are welcome to use any PHP or Laravel library
+----
+## Design 
 
+#### Database
+- In terms of the database, we kept it simple and straight to the point.
+![Database Design](assets/Database%20Design.png)
+
+#### Authorization
+- In terms of authorization and access levels, we had the following scheme.
+![Permissions](assets/Permissions.png)
+----
 ## Setup and Usage
 
 ### Backend
 
-- change directory to `backend`.
-- run `composer install` to install all dependencies.
-- create a database named `bayt` on MySQL. 
-- run `php artisan start`, this custom command will run the migrations, seed the database, and run the development server for you.
+- Change directory to `backend`.
+- Run `composer install` to install all dependencies.
+- Create a database named `bayt` on MySQL.
+- Create a file named `.env`, copy contents from `.env.example` to `.env`.
+- Change the value for `DB_DATABASE` to `bayt`.
+- Run `php artisan start` which does the following:
+    - Migrate the database scheme.
+    - Run the seeders:
+        - Admin Seeder.
+        - Students Seeder.
+    - Create a JWT Secret In `.env`.
+    - Serve the server on port `8000`.
 
 ### Frontend
