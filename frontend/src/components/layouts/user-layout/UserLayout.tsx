@@ -1,6 +1,6 @@
 import { useRole } from '../../../hooks/useRoles';
 import { signOutService } from '../../../services/AuthService';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function UserLayout({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
@@ -18,11 +18,11 @@ function UserLayout({ children }: { children: React.ReactNode }) {
         <div>
           {isAdmin ? (
             <>
-              <p>Students</p>
-              <p>Users</p>
+              <Link to={'/students'}>Students</Link>
+              <Link to={'/users'}>Users</Link>
             </>
           ) : (
-            <p>Students</p>
+            <Link to={'students'}>Students</Link>
           )}
         </div>
         <button type='button' onClick={handleLogout}>
