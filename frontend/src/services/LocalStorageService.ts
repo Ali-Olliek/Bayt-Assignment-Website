@@ -1,8 +1,12 @@
 import { User } from '../classes/User';
 
-export type AuthenticatedUser = User & {
-  token: string;
-};
+export class AuthenticatedUser extends User {
+  public token: string;
+  constructor(user: any) {
+    super(user);
+    this.token = user.token;
+  }
+}
 
 export default class LocalStorageService {
   private static instance: LocalStorageService;
@@ -30,7 +34,7 @@ export default class LocalStorageService {
 
     if (!userData) return null;
 
-    const user = JSON.parse(userData) as AuthenticatedUser;
+    const user = new AuthenticatedUser(JSON.parse(userData));
 
     return user;
   }
