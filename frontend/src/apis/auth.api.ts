@@ -1,5 +1,6 @@
 import { SuccessResponse } from '../classes/Response';
 import { authenticatedApi, unAuthenticatedApi } from '../config/api';
+import { AuthenticatedUser } from '../services/LocalStorageService';
 
 export interface ISignIn {
   email: string;
@@ -12,30 +13,30 @@ export interface ISignUp {
   username: string;
 }
 
-const signin = async (credentials: ISignIn): Promise<string> => {
+const signin = async (
+  credentials: ISignIn
+): Promise<AuthenticatedUser | undefined> => {
   try {
     const { data } = await authenticatedApi.post(
       '/public/sign-in',
       credentials
     );
 
-    return data;
-  } catch (error) {
-    throw error;
-  }
+    return data?.data;
+  } catch (error) {}
 };
 
-const signup = async (credentials: ISignUp): Promise<string> => {
+const signup = async (
+  credentials: ISignUp
+): Promise<AuthenticatedUser | undefined> => {
   try {
     const { data } = await unAuthenticatedApi.post(
       '/public/sign-up',
       credentials
     );
 
-    return data;
-  } catch (error) {
-    throw error;
-  }
+    return data?.data;
+  } catch (error) {}
 };
 
 const signout = async (): Promise<any> => {

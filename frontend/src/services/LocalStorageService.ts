@@ -1,14 +1,37 @@
+import { User } from '../classes/User';
+
+export type AuthenticatedUser = User & {
+  token: string;
+};
+
 export default class LocalStorageService {
-  saveToken(token: string) {
-    localStorage.setItem('token', token);
+  private static instance: LocalStorageService;
+
+  private constructor() {}
+
+  public static getInstance(): LocalStorageService {
+    if (!LocalStorageService.instance) {
+      LocalStorageService.instance = new LocalStorageService();
+    }
+
+    return LocalStorageService.instance;
   }
 
-  deleteToken() {
-    localStorage.removeItem('token');
+  saveUser(user: AuthenticatedUser) {
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
-  getToken(): string | null {
-    const token = localStorage.getItem('token');
-    return token;
+  deleteUser() {
+    localStorage.removeItem('user');
+  }
+
+  getUser(): AuthenticatedUser | null {
+    let userData = localStorage.getItem('user');
+
+    if (!userData) return null;
+
+    const user = JSON.parse(userData) as AuthenticatedUser;
+
+    return user;
   }
 }

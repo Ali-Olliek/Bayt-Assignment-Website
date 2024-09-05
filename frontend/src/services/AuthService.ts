@@ -1,25 +1,37 @@
 import { ISignIn, ISignUp } from '../apis/auth.api';
-import LocalStorageService from './LocalStorageService';
+import LocalStorageService, { AuthenticatedUser } from './LocalStorageService';
 import { signInApi, signOutApi, signUpApi } from '../apis/auth.api';
 
 // Initialize LocalStorage Service Outside
-const localStorageService = new LocalStorageService();
+const localStorageService = LocalStorageService.getInstance();
 
-const signin = async (credentials: ISignIn) => {
+const signin = async (
+  credentials: ISignIn
+): Promise<AuthenticatedUser | null> => {
   try {
-    const token = await signInApi(credentials);
+    const userData = await signInApi(credentials);
 
-    localStorageService.saveToken(token);
+    if (!userData) return null;
+
+    localStorageService.saveUser(userData);
+
+    return userData;
   } catch (error) {
     throw error;
   }
 };
 
-const signup = async (credentials: ISignUp) => {
+const signup = async (
+  credentials: ISignUp
+): Promise<AuthenticatedUser | null> => {
   try {
-    const token = await signUpApi(credentials);
+    const userData = await signUpApi(credentials);
 
-    localStorageService.saveToken(token);
+    if (!userData) return null;
+
+    localStorageService.saveUser(userData);
+
+    return userData;
   } catch (error) {
     throw error;
   }
@@ -29,7 +41,7 @@ const signout = async () => {
   try {
     await signOutApi();
 
-    localStorageService.deleteToken();
+    localStorageService.deleteUser();
   } catch (error) {
     throw error;
   }
