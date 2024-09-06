@@ -21,6 +21,10 @@
 #### Authorization
 - In terms of authorization and access levels, we had the following scheme.
 ![Permissions](assets/Permissions.png)
+
+#### Frontend
+- The basic flow of the application can be seen in the following diagram:
+![Frontend Design](assets/Frontend%20Design.png)
 ----
 ## Setup and Usage
 
@@ -40,3 +44,10 @@
     - Serve the server on port `8000`.
 
 ### Frontend
+
+- Change directory to `frontend`
+- Run `npm install` or `yarn install`
+- Run `npm start` to run the development web app.
+- To login as an Admin:
+    - Email:`admin@admin.com`
+    - Password: `1234qwer`
