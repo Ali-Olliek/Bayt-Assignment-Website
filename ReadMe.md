@@ -22,11 +22,19 @@
 - In terms of authorization and access levels, we had the following scheme.
 ![Permissions](assets/Permissions.png)
 
-#### Frontend
+#### Frontend Flow Design
 - The basic flow of the application can be seen in the following diagram:
 ![Frontend Design](assets/Frontend%20Design.png)
+
+#### Backend Design
+- The following is generally how I structure my backend systems
+![Backend Design](assets/Backend%20Design.png)
 ----
 ## Setup and Usage
+
+- Clone Repository using `git clone https://github.com/Ali-Olliek/Bayt-Assignment-Website.git`
+- Or download the release `v1.0`
+    - Extract the folder somewhere on your machine.
 
 ### Backend
 
