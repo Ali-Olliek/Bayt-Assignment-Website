@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Student } from '../classes/Student';
 import { useRole } from '../hooks/useRoles';
 import Popup from '../components/controls/Popup';
 import { createStudentApi, getStudentsApi } from '../apis/students.api';
 import StudentControls from '../components/students/StudentControls';
+import { ControlsContext } from '../context/ControlsContext';
 
 const HEADERS = ['', 'Name', 'Age', 'Address', 'Action'];
 
@@ -14,24 +15,42 @@ function Students() {
   const [newStudent, setNewStudent] = useState<Student>(
     new Student({ name: '', age: 0, address: '' })
   );
+  const { toggleUpdating, isUpdatingContent } = useContext(ControlsContext);
 
+  //# Fetch Students
   const fetchStudents = async () => {
     const students = await getStudentsApi('/users/students');
 
     setStudents(students);
   };
 
+  //# Page Load
   useEffect(() => {
     fetchStudents();
+    return () => {
+      setNewStudent(new Student({}));
+    };
   }, []);
 
+  //# Refetch on Content Update
+  useEffect(() => {
+    console.log('In Use Effect', { isUpdatingContent: isUpdatingContent });
+    if (isUpdatingContent) {
+      fetchStudents().then(() => {
+        console.log('Here');
+        toggleUpdating(false);
+      });
+    }
+  }, [isUpdatingContent]);
+
+  //# Handle Adding Student
   const handleAddStudent = async (e: any) => {
     e.preventDefault();
     const student = await createStudentApi(newStudent);
 
     if (!student) return;
 
-    setStudents([...students, student]);
+    toggleUpdating(true);
     setIsAdding(false);
   };
 
@@ -66,6 +85,7 @@ function Students() {
                       <input
                         onChange={handleChange}
                         name='name'
+                        type='text'
                         value={newStudent?.name}
                       />
                     </label>

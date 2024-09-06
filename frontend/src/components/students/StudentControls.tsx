@@ -1,7 +1,8 @@
 import './students-control.css';
 import Popup from '../controls/Popup';
 import { Student } from '../../classes/Student';
-import React, { useEffect, useState } from 'react';
+import { ControlsContext } from '../../context/ControlsContext';
+import React, { useContext, useEffect, useState } from 'react';
 import { removeStudentApi, updateStudentApi } from '../../apis/students.api';
 
 interface IStudentControlsProps {
@@ -11,6 +12,7 @@ interface IStudentControlsProps {
 function StudentControls({ student }: IStudentControlsProps) {
   const [isUpdating, setIsUpdating] = useState(false);
   const [updatedStudent, setUpdatedStudent] = useState<Student>(student);
+  const { toggleUpdating } = useContext(ControlsContext);
 
   useEffect(() => {
     setUpdatedStudent(student);
@@ -26,11 +28,13 @@ function StudentControls({ student }: IStudentControlsProps) {
 
   const handleDelete = async () => {
     await removeStudentApi(student.id);
+    toggleUpdating(true);
   };
 
   const saveChanges = async (e: React.FormEvent) => {
     e.preventDefault();
     await updateStudentApi(updatedStudent, updatedStudent.id);
+    toggleUpdating(true);
     setIsUpdating(false);
   };
 
