@@ -1,23 +1,34 @@
 import './screens.css';
 import { User } from '../classes/User';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { getUsersApi } from '../apis/users.api';
 import UserControls from '../components/users/UserControls';
+import { ControlsContext } from '../context/ControlsContext';
 
 const HEADERS = ['', 'Username', 'Email', 'Is Admin', 'Action'];
 
 function Users() {
   const [users, setUsers] = useState<User[]>();
+  const { isUpdatingContent, toggleUpdating } = useContext(ControlsContext);
 
+  const fetchUsers = async () => {
+    const users = await getUsersApi();
+
+    setUsers(users);
+  };
+
+  //# On Page Start
   useEffect(() => {
-    const fetchUsers = async () => {
-      const users = await getUsersApi();
-
-      setUsers(users);
-    };
-
     fetchUsers();
   }, []);
+
+  //# On Content Update
+  useEffect(() => {
+    if (isUpdatingContent) {
+      fetchUsers();
+      toggleUpdating(false);
+    }
+  }, [isUpdatingContent]);
 
   return (
     <>
@@ -38,11 +49,7 @@ function Users() {
                 <td>{user.username}</td>
                 <td>{user.email}</td>
                 <td>
-                  <input
-                    disabled
-                    type='checkbox'
-                    defaultChecked={user.isAdmin}
-                  />
+                  <input disabled type='checkbox' checked={user.isAdmin} />
                 </td>
                 <td>
                   <UserControls user={user} />

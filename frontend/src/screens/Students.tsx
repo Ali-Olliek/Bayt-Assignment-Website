@@ -34,12 +34,9 @@ function Students() {
 
   //# Refetch on Content Update
   useEffect(() => {
-    console.log('In Use Effect', { isUpdatingContent: isUpdatingContent });
     if (isUpdatingContent) {
-      fetchStudents().then(() => {
-        console.log('Here');
-        toggleUpdating(false);
-      });
+      fetchStudents();
+      toggleUpdating(false);
     }
   }, [isUpdatingContent]);
 

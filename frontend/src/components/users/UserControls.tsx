@@ -1,13 +1,15 @@
 import './user-controls.css';
 import Popup from '../controls/Popup';
 import { User } from '../../classes/User';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { updateUserApi } from '../../apis/users.api';
+import { ControlsContext } from '../../context/ControlsContext';
 
 function UserControls({ user }: { user: User }) {
   const [isUpdating, setIsUpdating] = useState(false);
   const [updatedUser, setUpdatedUser] = useState<User>(user);
   const [isAdmin, setIsAdmin] = useState(updatedUser.isAdmin);
+  const { toggleUpdating } = useContext(ControlsContext);
 
   useEffect(() => {
     setUpdatedUser(user);
@@ -19,6 +21,7 @@ function UserControls({ user }: { user: User }) {
   const saveChanges = async (e: React.FormEvent) => {
     e.preventDefault();
     await updateUserApi(isAdmin, updatedUser.id);
+    toggleUpdating(true);
     setIsUpdating(false);
   };
 
