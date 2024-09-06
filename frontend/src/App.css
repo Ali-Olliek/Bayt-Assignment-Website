@@ -13,3 +13,13 @@ th {
   background-color: #f2f2f2;
   text-align: center;
 }
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+ 
+}
+
+input[type="checkbox"]:checked {
+ color: var(--accent-color);
+}

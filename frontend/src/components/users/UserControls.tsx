@@ -31,7 +31,7 @@ function UserControls({ user }: { user: User }) {
         update
       </button>
       <Popup title='Update User' open={isUpdating} setOpen={setIsUpdating}>
-        <form onSubmit={saveChanges}>
+        <form className='update-user-form' onSubmit={saveChanges}>
           <label>
             Username
             <input
@@ -60,6 +60,7 @@ function UserControls({ user }: { user: User }) {
           <label>
             Is Admin
             <input
+              id='cb1'
               onChange={(e) => setIsAdmin(e.target.checked)}
               name='isAdmin'
               type='checkbox'

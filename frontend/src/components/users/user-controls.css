@@ -12,3 +12,45 @@
     color: var(--text-color);
     background-color: var(--accent-color);
 }
+
+
+.update-user-form {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  justify-content: space-around;
+}
+
+.update-user-form > label > input {
+  height: 30px;
+  padding-inline: 5px;
+}
+
+.update-user-form > label {
+  display: flex;
+  flex-direction: column;
+  margin-block: 5px;
+  gap: 5px;
+  font-size: small;
+  font-weight: bold;
+  text-align: start;
+}
+
+.update-user-form > button {
+  height: 30px;
+  width: 25%;
+  align-self: end;
+  margin-top: 5px;
+  border-radius: 3px;
+  border: 0.5px solid;
+  cursor: pointer;
+}
+
+.update-user-form > button:hover {
+  background-color: var(--accent-color);
+  border: 0.5px solid;
+}
+
+#cb1 {
+    accent-color: var(--primary-color);
+}
