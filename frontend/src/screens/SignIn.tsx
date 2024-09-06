@@ -1,6 +1,7 @@
+import './screens.css';
 import React, { useState, useEffect } from 'react';
-import { signInService } from '../services/AuthService';
 import { useNavigate } from 'react-router-dom';
+import { signInService } from '../services/AuthService';
 
 function SignIn() {
   const navigate = useNavigate();
@@ -21,33 +22,37 @@ function SignIn() {
   };
 
   return (
-    <div>
-      <form className='sign-in form' onSubmit={handleSignIn}>
-        <label>
-          Email:
-          <input
-            type='email'
-            name='email'
-            placeholder='insert an email'
-            value={credentials.email}
-            onChange={(e) =>
-              setCredentials({ ...credentials, email: e.target.value })
-            }
-          ></input>
-        </label>
-        <label>
-          Password:
-          <input
-            type='password'
-            name='password'
-            placeholder='insert a password'
-            value={credentials.password}
-            onChange={(e) =>
-              setCredentials({ ...credentials, password: e.target.value })
-            }
-          ></input>
-        </label>
-        <button type='submit'>Sign In</button>
+    <div className='sign-in'>
+      <form onSubmit={handleSignIn}>
+        <div className='inputs'>
+          <label>
+            Email
+            <input
+              type='email'
+              name='email'
+              placeholder='Insert your email'
+              value={credentials.email}
+              onChange={(e) =>
+                setCredentials({ ...credentials, email: e.target.value })
+              }
+            ></input>
+          </label>
+          <label>
+            Password
+            <input
+              type='password'
+              name='password'
+              placeholder='Insert your password'
+              value={credentials.password}
+              onChange={(e) =>
+                setCredentials({ ...credentials, password: e.target.value })
+              }
+            ></input>
+          </label>
+        </div>
+        <div>
+          <button type='submit'>Sign In</button>
+        </div>
       </form>
       <p>
         New user? Create Account <a href='/sign-up'>Here</a>

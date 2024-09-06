@@ -21,48 +21,53 @@ function SignUp() {
   };
 
   return (
-    <div>
-      <form className='sign-in form' onSubmit={handleSignUp}>
-        <label>
-          Username:
-          <input
-            type='text'
-            name='username'
-            placeholder='insert an username'
-            value={credentials.username}
-            onChange={(e) =>
-              setCredentials({ ...credentials, username: e.target.value })
-            }
-          />
-        </label>
-        <label>
-          Email:
-          <input
-            type='email'
-            name='email'
-            placeholder='insert an email'
-            value={credentials.email}
-            onChange={(e) =>
-              setCredentials({ ...credentials, email: e.target.value })
-            }
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type='password'
-            name='password'
-            placeholder='insert a password'
-            value={credentials.password}
-            onChange={(e) =>
-              setCredentials({ ...credentials, password: e.target.value })
-            }
-          />
-        </label>
-        <button type='submit'>Sign Up</button>
+    <div className='sign-up'>
+      <form onSubmit={handleSignUp}>
+        <div className='inputs'>
+          <label>
+            Username
+            <input
+              autoComplete='username'
+              type='text'
+              name='username'
+              placeholder='Insert an username'
+              value={credentials.username}
+              onChange={(e) =>
+                setCredentials({ ...credentials, username: e.target.value })
+              }
+            />
+          </label>
+          <label>
+            Email
+            <input
+              type='email'
+              name='email'
+              placeholder='Insert an email'
+              value={credentials.email}
+              onChange={(e) =>
+                setCredentials({ ...credentials, email: e.target.value })
+              }
+            />
+          </label>
+          <label>
+            Password
+            <input
+              type='password'
+              name='password'
+              placeholder='Insert a password'
+              value={credentials.password}
+              onChange={(e) =>
+                setCredentials({ ...credentials, password: e.target.value })
+              }
+            />
+          </label>
+        </div>
+        <div>
+          <button type='submit'>Sign Up</button>
+        </div>
       </form>
       <p>
-        Have an account? Sign In <a href='/sign-in'>Here</a>
+        Alread have an account? Sign In <a href='/sign-in'>Here</a>
       </p>
     </div>
   );
