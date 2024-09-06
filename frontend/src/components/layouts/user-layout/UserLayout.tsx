@@ -35,9 +35,9 @@ function UserLayout({ children }: { children: React.ReactNode }) {
               </Link>
             </>
           ) : (
-            <h3 className='nav-active'>
-              <Link to={'students'}>Students</Link>
-            </h3>
+            <Link to={'students'}>
+              <h3 className='nav-active'>Students</h3>
+            </Link>
           )}
         </div>
         <button className='logout btn' type='button' onClick={handleLogout}>
