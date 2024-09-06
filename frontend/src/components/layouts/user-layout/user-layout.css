@@ -1,40 +1,57 @@
 .top-bar {
-    height: 80px;
-    background-color:var(--primary-color);
-    display: flex;
-    justify-content: space-between;
-    padding-inline: 20px;
-    padding-block: 10px;
+  height: 80px;
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 20px;
+  padding-block: 10px;
 }
 
-.nav-buttons > h3 > a {
-    text-decoration: none;
-    margin-inline: 20px;
+.nav-buttons > a > h3 {
+  text-decoration: none;
+  margin-inline: 20px;
 }
 
 .nav-active {
-    color: var(--accent-color) !important;
+  color: var(--accent-color) !important;
 }
 
-a:visited {
-    text-decoration: none;
-    color: var(--text-color);
+.nav-buttons > a:visited > h3 {
+  text-decoration: none;
+  color: var(--text-color);
 }
-
 
 .nav-buttons {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
+}
+
+.nav-buttons > a {
+  height: calc(100% + 20px);
+  display: flex;
+  align-items: center;
+  margin-inline: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease; 
+}
+
+.nav-buttons > a:hover {
+  background-color: var(--secondary-color);
+}
+
+.link-name {
+  text-decoration: none;
 }
 
 .btn {
-    background-color: var(--primary-color);
-    border: 0px;
-    cursor: pointer;
+  background-color: var(--primary-color);
+  border: 0px;
+  cursor: pointer;
 }
 
 .logout {
-    font-size: medium;
-    font-weight: bold;
-    color: var(--text-color);
+  font-size: medium;
+  font-weight: bold;
+  color: var(--text-color);
 }

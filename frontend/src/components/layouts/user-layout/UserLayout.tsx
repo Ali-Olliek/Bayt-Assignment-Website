@@ -20,25 +20,19 @@ function UserLayout({ children }: { children: React.ReactNode }) {
         <div className='nav-buttons'>
           {isAdmin ? (
             <>
-              <h3>
-                <Link
-                  className={
-                    location.pathname == '/students' ? 'nav-active' : ''
-                  }
-                  to={'/students'}
-                >
-                  Students
-                </Link>
-              </h3>
+              <Link
+                className={location.pathname == '/students' ? 'nav-active' : ''}
+                to={'/students'}
+              >
+                <h3 className='link-name'>Students</h3>
+              </Link>
 
-              <h3>
-                <Link
-                  className={location.pathname == '/users' ? 'nav-active' : ''}
-                  to={'/users'}
-                >
-                  Users
-                </Link>
-              </h3>
+              <Link
+                className={location.pathname == '/users' ? 'nav-active' : ''}
+                to={'/users'}
+              >
+                <h3 className='link-name'>Users</h3>
+              </Link>
             </>
           ) : (
             <h3 className='nav-active'>
