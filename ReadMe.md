@@ -46,8 +46,8 @@
 - Run `php artisan start` which does the following:
     - Migrate the database scheme.
     - Run the seeders:
-        - Admin Seeder.
-        - Students Seeder.
+        - Seed a single admin.
+        - Seed 20 Students.
     - Create a JWT Secret In `.env`.
     - Serve the server on port `8000`.
 
