@@ -5,23 +5,19 @@ import { updateUserApi } from '../../apis/users.api';
 
 function UserControls({ user }: { user: User }) {
   const [isUpdating, setIsUpdating] = useState(false);
-  const [updatedUser, setUpdatedUser] = useState(user);
+  const [updatedUser, setUpdatedUser] = useState<User>(user);
+  const [isAdmin, setIsAdmin] = useState(updatedUser.isAdmin);
 
   useEffect(() => {
     setUpdatedUser(user);
     return () => {
       setUpdatedUser(new User({}));
     };
-  }, [user, isUpdating]);
-
-  const handleUpdate = (e: any) => {
-    e.preventDefault();
-    setUpdatedUser({ ...updatedUser, [e.target.name]: e.target.value });
-  };
+  }, [updatedUser, isUpdating]);
 
   const saveChanges = async (e: React.FormEvent) => {
     e.preventDefault();
-    await updateUserApi(updatedUser.isAdmin, updatedUser.id);
+    await updateUserApi(isAdmin, updatedUser.id);
     setIsUpdating(false);
   };
 
@@ -34,7 +30,6 @@ function UserControls({ user }: { user: User }) {
             Username
             <input
               disabled={true}
-              onChange={handleUpdate}
               name='username'
               value={updatedUser.username}
             />
@@ -43,7 +38,6 @@ function UserControls({ user }: { user: User }) {
             Email
             <input
               disabled={true}
-              onChange={handleUpdate}
               type='email'
               name='email'
               value={updatedUser.email}
@@ -53,7 +47,6 @@ function UserControls({ user }: { user: User }) {
             Phone Number
             <input
               disabled={true}
-              onChange={handleUpdate}
               name='phoneNumber'
               value={updatedUser.phoneNumber ?? ''}
             />
@@ -61,10 +54,10 @@ function UserControls({ user }: { user: User }) {
           <label>
             Is Admin
             <input
-              onChange={handleUpdate}
+              onChange={(e) => setIsAdmin(e.target.checked)}
               name='isAdmin'
-              type='radio'
-              defaultChecked={updatedUser.isAdmin}
+              type='checkbox'
+              checked={isAdmin}
             />
           </label>
           <button type='submit'>save</button>

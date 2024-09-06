@@ -34,7 +34,7 @@ function Users() {
             <td>{user.username}</td>
             <td>{user.email}</td>
             <td>
-              <input disabled type='radio' defaultChecked={user.isAdmin} />
+              <input disabled type='checkbox' defaultChecked={user.isAdmin} />
             </td>
             <td>
               <UserControls user={user} />

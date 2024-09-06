@@ -35,8 +35,10 @@ function StudentControls({ student }: IStudentControlsProps) {
 
   return (
     <>
-      <button onClick={() => setIsUpdating(true)}>update</button>
-      <button onClick={handleDelete}>delete</button>
+      <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+        <button onClick={() => setIsUpdating(true)}>update</button>
+        <button onClick={handleDelete}>delete</button>
+      </div>
       <Popup open={isUpdating} setOpen={setIsUpdating}>
         <form onSubmit={saveChanges}>
           <label>
