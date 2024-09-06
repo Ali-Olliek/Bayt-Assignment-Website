@@ -4,13 +4,32 @@
   display: flex;
   flex-direction: column;
   width: 20%;
+  padding: 40px;
+  border-radius: 6px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: var(--white);
+}
+
+.sign-in-page {
+  background: rgb(255, 255, 255);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(68, 130, 244, 1) 74%,
+    rgba(244, 194, 80, 1) 100%
+  );
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sign-in > form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 60%;
+  height: 100%;
 }
 
 .sign-in > form > div {
@@ -63,13 +82,32 @@
   display: flex;
   flex-direction: column;
   width: 20%;
+  padding: 40px;
+  border-radius: 6px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: var(--white);
+}
+
+.sign-up-page {
+  background: rgb(68, 130, 244);
+  background: radial-gradient(
+    circle,
+    rgba(68, 130, 244, 1) 0%,
+    rgba(244, 194, 80, 1) 75%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .sign-up > form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 80%;
+  height: 100%;
 }
 
 .sign-up > form > div {
