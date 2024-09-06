@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { Student } from '../../classes/Student';
+import './students-control.css';
 import Popup from '../controls/Popup';
+import { Student } from '../../classes/Student';
+import React, { useEffect, useState } from 'react';
 import { removeStudentApi, updateStudentApi } from '../../apis/students.api';
 
 interface IStudentControlsProps {
@@ -36,8 +37,15 @@ function StudentControls({ student }: IStudentControlsProps) {
   return (
     <>
       <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-        <button onClick={() => setIsUpdating(true)}>update</button>
-        <button onClick={handleDelete}>delete</button>
+        <button
+          className='student-action update'
+          onClick={() => setIsUpdating(true)}
+        >
+          update
+        </button>
+        <button className='student-action del' onClick={handleDelete}>
+          delete
+        </button>
       </div>
       <Popup open={isUpdating} setOpen={setIsUpdating}>
         <form onSubmit={saveChanges}>

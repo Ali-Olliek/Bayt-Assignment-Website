@@ -10,5 +10,5 @@
 
 .user-action:hover {
     color: var(--text-color);
-    background-color: var(--primary-color);
+    background-color: var(--accent-color);
 }

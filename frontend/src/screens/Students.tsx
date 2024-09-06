@@ -48,70 +48,75 @@ function Students() {
 
   return (
     <>
-      <div>
-        {isAdmin && (
-          <>
-            <button onClick={() => setIsAdding(true)}>add student</button>
-            {isAdding && (
-              <Popup open={isAdding} setOpen={setIsAdding}>
-                <form onSubmit={handleAddStudent}>
-                  <label>
-                    Name
-                    <input
-                      onChange={handleChange}
-                      name='name'
-                      value={newStudent?.name}
-                    />
-                  </label>
-                  <label>
-                    Age
-                    <input
-                      onChange={handleChange}
-                      type='number'
-                      name='age'
-                      value={newStudent?.age}
-                    />
-                  </label>
-                  <label>
-                    Address
-                    <input
-                      onChange={handleChange}
-                      name='address'
-                      value={newStudent?.address}
-                    />
-                  </label>
-                  <button type='submit'>save</button>
-                </form>
-              </Popup>
-            )}
-          </>
-        )}
-      </div>
-      <table>
-        <thead>
-          <tr>
-            {HEADERS.map((header) => {
-              if (!isAdmin && header == 'Action') return;
-              return <th key={header}>{header}</th>;
-            })}
-          </tr>
-        </thead>
-        <tbody>
-          {students?.map((student) => (
-            <tr key={student.id}>
-              <td>{student.id}</td>
-              <td style={{ textAlign: 'left' }}>{student.name}</td>
-              <td>{student.age}</td>
-              <td style={{ textAlign: 'left' }}>{student.address}</td>
-              {isAdmin && (
-                <td>
-                  <StudentControls student={student} />
-                </td>
+      <h1 className='page-title'>Students</h1>
+      <div className='students-container'>
+        <div className='table-header'>
+          {isAdmin && (
+            <>
+              <button onClick={() => setIsAdding(true)}>add student</button>
+              {isAdding && (
+                <Popup open={isAdding} setOpen={setIsAdding}>
+                  <form onSubmit={handleAddStudent}>
+                    <label>
+                      Name
+                      <input
+                        onChange={handleChange}
+                        name='name'
+                        value={newStudent?.name}
+                      />
+                    </label>
+                    <label>
+                      Age
+                      <input
+                        onChange={handleChange}
+                        type='number'
+                        name='age'
+                        value={newStudent?.age}
+                      />
+                    </label>
+                    <label>
+                      Address
+                      <input
+                        onChange={handleChange}
+                        name='address'
+                        value={newStudent?.address}
+                      />
+                    </label>
+                    <button type='submit'>save</button>
+                  </form>
+                </Popup>
               )}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+            </>
+          )}
+        </div>
+        <div className='students-table'>
+          <table>
+            <thead>
+              <tr>
+                {HEADERS.map((header) => {
+                  if (!isAdmin && header == 'Action') return;
+                  return <th key={header}>{header}</th>;
+                })}
+              </tr>
+            </thead>
+            <tbody>
+              {students?.map((student) => (
+                <tr key={student.id}>
+                  <td>{student.id}</td>
+                  <td style={{ textAlign: 'left' }}>{student.name}</td>
+                  <td>{student.age}</td>
+                  <td style={{ textAlign: 'left' }}>{student.address}</td>
+                  {isAdmin && (
+                    <td>
+                      <StudentControls student={student} />
+                    </td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </>
   );
 }
