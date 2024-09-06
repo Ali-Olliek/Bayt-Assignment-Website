@@ -47,8 +47,8 @@ function StudentControls({ student }: IStudentControlsProps) {
           delete
         </button>
       </div>
-      <Popup open={isUpdating} setOpen={setIsUpdating}>
-        <form onSubmit={saveChanges}>
+      <Popup title='Update Student' open={isUpdating} setOpen={setIsUpdating}>
+        <form className='update-student-form' onSubmit={saveChanges}>
           <label>
             Name
             <input

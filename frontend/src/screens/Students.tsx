@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Student } from '../classes/Student';
-import { createStudentApi, getStudentsApi } from '../apis/students.api';
-import StudentControls from '../components/students/StudentControls';
 import { useRole } from '../hooks/useRoles';
 import Popup from '../components/controls/Popup';
+import { createStudentApi, getStudentsApi } from '../apis/students.api';
+import StudentControls from '../components/students/StudentControls';
 
-const HEADERS = ['Id', 'Name', 'Age', 'Address', 'Action'];
+const HEADERS = ['', 'Name', 'Age', 'Address', 'Action'];
 
 function Students() {
   const { isAdmin } = useRole();
@@ -55,8 +55,12 @@ function Students() {
             <>
               <button onClick={() => setIsAdding(true)}>add student</button>
               {isAdding && (
-                <Popup open={isAdding} setOpen={setIsAdding}>
-                  <form onSubmit={handleAddStudent}>
+                <Popup
+                  title='Add Student'
+                  open={isAdding}
+                  setOpen={setIsAdding}
+                >
+                  <form className='add-user-form' onSubmit={handleAddStudent}>
                     <label>
                       Name
                       <input
@@ -100,9 +104,9 @@ function Students() {
               </tr>
             </thead>
             <tbody>
-              {students?.map((student) => (
+              {students?.map((student, index) => (
                 <tr key={student.id}>
-                  <td>{student.id}</td>
+                  <td>{index + 1}</td>
                   <td style={{ textAlign: 'left' }}>{student.name}</td>
                   <td>{student.age}</td>
                   <td style={{ textAlign: 'left' }}>{student.address}</td>

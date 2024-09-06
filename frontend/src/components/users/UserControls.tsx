@@ -30,7 +30,7 @@ function UserControls({ user }: { user: User }) {
       >
         update
       </button>
-      <Popup open={isUpdating} setOpen={setIsUpdating}>
+      <Popup title='Update User' open={isUpdating} setOpen={setIsUpdating}>
         <form onSubmit={saveChanges}>
           <label>
             Username

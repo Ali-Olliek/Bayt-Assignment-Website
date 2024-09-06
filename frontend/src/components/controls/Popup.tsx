@@ -13,7 +13,7 @@ function Popup({ open, children, setOpen, title }: IPopupProps) {
     <div className='dialog-wrapper'>
       {open && (
         <div className='dialog-overlay' onClick={() => setOpen(false)}>
-          <dialog className='pop-up' open>
+          <dialog className='pop-up' open onClick={(e) => e.stopPropagation()}>
             <div>
               <h4>{title}</h4>
               <button onClick={() => setOpen(false)}>x</button>
