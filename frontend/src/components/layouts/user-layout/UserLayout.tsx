@@ -1,3 +1,4 @@
+import './user-layout.css';
 import { useRole } from '../../../hooks/useRoles';
 import { signOutService } from '../../../services/AuthService';
 import { Link, useNavigate } from 'react-router-dom';
@@ -14,18 +15,25 @@ function UserLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <div>
-        <div>
+      <div className='top-bar'>
+        <div className='nav-buttons'>
           {isAdmin ? (
             <>
-              <Link to={'/students'}>Students</Link>
-              <Link to={'/users'}>Users</Link>
+              <h3>
+                <Link to={'/students'}>Students</Link>
+              </h3>
+
+              <h3>
+                <Link to={'/users'}>Users</Link>
+              </h3>
             </>
           ) : (
-            <Link to={'students'}>Students</Link>
+            <h3>
+              <Link to={'students'}>Students</Link>
+            </h3>
           )}
         </div>
-        <button type='button' onClick={handleLogout}>
+        <button className='logout btn' type='button' onClick={handleLogout}>
           Logout
         </button>
       </div>

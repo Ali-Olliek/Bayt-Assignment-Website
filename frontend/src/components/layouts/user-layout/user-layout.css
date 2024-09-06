@@ -1,0 +1,35 @@
+.top-bar {
+    height: 80px;
+    background-color: #4482f4;
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 20px;
+    padding-block: 10px;
+}
+
+.nav-buttons > h3 > a {
+    text-decoration: none;
+    margin-inline: 20px;
+}
+
+.nav-buttons > h3 > a:visited {
+    text-decoration: none;
+    color: #ffff;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.btn {
+    background-color: #4482f4;
+    border: 0px;
+    cursor: pointer;
+}
+
+.logout {
+    font-size: medium;
+    font-weight: bold;
+    color: #ffff;
+}
