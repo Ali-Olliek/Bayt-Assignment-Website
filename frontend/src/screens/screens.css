@@ -57,6 +57,7 @@
 }
 
 /* ------------------------- Sign Up ------------------------- */
+
 .sign-up{
     height: 50%;
     display: flex;
@@ -112,4 +113,24 @@
     justify-content: center;
     width: 100%;
     align-items: center;
+}
+
+/* ------------------------- Users Table ------------------------- */
+
+.users-container > table {
+    overflow: scroll;
+    width: 95%;
+}
+
+.users-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+    align-items: center;
+    margin-block: 2.5%;
+}
+
+.page-title {
+    margin-inline: 2.5%;
 }

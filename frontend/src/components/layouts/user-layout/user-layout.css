@@ -1,6 +1,6 @@
 .top-bar {
     height: 80px;
-    background-color: #4482f4;
+    background-color:var(--primary-color);
     display: flex;
     justify-content: space-between;
     padding-inline: 20px;
@@ -12,10 +12,15 @@
     margin-inline: 20px;
 }
 
-.nav-buttons > h3 > a:visited {
-    text-decoration: none;
-    color: #ffff;
+.nav-active {
+    color: var(--accent-color) !important;
 }
+
+a:visited {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
 
 .nav-buttons {
     display: flex;
@@ -23,7 +28,7 @@
 }
 
 .btn {
-    background-color: #4482f4;
+    background-color: var(--primary-color);
     border: 0px;
     cursor: pointer;
 }
@@ -31,5 +36,5 @@
 .logout {
     font-size: medium;
     font-weight: bold;
-    color: #ffff;
+    color: var(--text-color);
 }

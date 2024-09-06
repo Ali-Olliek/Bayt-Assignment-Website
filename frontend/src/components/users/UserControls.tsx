@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import './user-controls.css';
 import Popup from '../controls/Popup';
 import { User } from '../../classes/User';
+import React, { useEffect, useState } from 'react';
 import { updateUserApi } from '../../apis/users.api';
 
 function UserControls({ user }: { user: User }) {
@@ -23,7 +24,12 @@ function UserControls({ user }: { user: User }) {
 
   return (
     <>
-      <button onClick={() => setIsUpdating(true)}>update</button>
+      <button
+        className='user-action update'
+        onClick={() => setIsUpdating(true)}
+      >
+        update
+      </button>
       <Popup open={isUpdating} setOpen={setIsUpdating}>
         <form onSubmit={saveChanges}>
           <label>
