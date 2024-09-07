@@ -33,7 +33,7 @@
 ## Setup and Usage
 
 - Clone Repository using `git clone https://github.com/Ali-Olliek/Bayt-Assignment-Website.git`
-- Or download the release `v1.0`
+- Or download the latest release:
     - Extract the folder somewhere on your machine.
 
 ### Backend
