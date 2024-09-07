@@ -17,7 +17,11 @@ th {
 input[type="checkbox"] {
   width: 20px;
   height: 20px;
- 
+  cursor: pointer;
+}
+
+input[type="checkbox"]:disabled {
+  cursor:not-allowed;
 }
 
 input[type="checkbox"]:checked {
